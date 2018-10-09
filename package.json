@@ -1,0 +1,21 @@
+{
+  "name": "image-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index4.js",
+  "dependencies": {
+    "args-parser": "^1.1.0",
+    "puppeteer-core": "^1.9.0",
+    "parcel-bundler": "^1.9.7",
+    "rainbowvis.js": "^1.0.1",
+    "roughjs": "^2.2.5",
+    "seedrandom": "^2.2.0",
+    "standard": "^11.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "parcel serve --no-autoinstall ./snakeart/index.html"
+  },
+  "author": "",
+  "license": "ISC"
+}
