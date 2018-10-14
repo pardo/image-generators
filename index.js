@@ -2,10 +2,11 @@ const puppeteer = require('puppeteer-core')
 var fs = require('fs')
 const args = require('args-parser')(process.argv)
 
-// example node index.js --name=pardo --count=100 --width=1000 --height=1000 -avoidGraphemescope --bgcolor=red
+// example node index.js --name=pardo --count=100 --width=1000 --height=1000 -avoidGraphemescope --bgcolor=red --scale=1.5
 var options = {
   avoidGraphemescope: args.avoidGraphemescope,
-  bgcolor: args.bgcolor
+  bgcolor: args.bgcolor,
+  scale: args.scale || 1
 }
 var outputDir = './output/'
 var name = args.name || 'snake'
@@ -20,13 +21,14 @@ if (!fs.existsSync(outputDir)) {
 }
 
 async function render (page, width, height, name, options) {
-  await page.evaluate(function (width, height, name, avoidGraphemescope, bgcolor) {
+  await page.evaluate(function (width, height, name, avoidGraphemescope, bgcolor, scale) {
     var options = {
       avoidGraphemescope: avoidGraphemescope,
-      bgcolor: bgcolor
+      bgcolor: bgcolor,
+      scale: scale
     }
     window.render(width, height, name, options)
-  }, width, height, name, options.avoidGraphemescope, options.bgcolor)
+  }, width, height, name, options.avoidGraphemescope, options.bgcolor, options.scale)
 }
 
 (async() => {

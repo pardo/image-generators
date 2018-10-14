@@ -248,10 +248,11 @@ function Snaker (drawable) {
     )
   }
 
-  this.reset = function (name) {
+  this.reset = function (name, options) {
     console.log('name: ' + name)
     this.seed = seedrandom(name)
     this.size = parseInt(this.seed() * 80) + 30 // square size
+    this.size = this.size * options.scale
     this.color = '#000000'
     this.strokeColor = changeColorLuminance(this.color, -0.7) + '80'
     this.visitedPositions = []
@@ -520,7 +521,7 @@ function Snaker (drawable) {
     }
     this.intialPositions = FisherYatesShuffle(this.intialPositions, this.seed)
   }
-  this.resize = function (name) {
+  this.resize = function () {
     let size = this.drawable.getSize()
     this.setGridSize(
       parseInt(size.width / this.size),
@@ -543,12 +544,13 @@ window.render = function (width, height, name, options) {
     rendersArgs.push([width, height, name, options])
     return
   }
+  var elapsed = new Date()
   rendering = true
-  snaker.reset(name)
+  snaker.reset(name, options)
   width = parseInt(width)
   height = parseInt(height)
   drawable.resize({ width: width, height: height })
-  snaker.resize(name)
+  snaker.resize()
   drawable.resize({
     width: parseInt(snaker.width * snaker.size),
     height: parseInt(snaker.height * snaker.size)
@@ -566,10 +568,12 @@ window.render = function (width, height, name, options) {
   console.log(`Drawed snakes data ${name}`)
   snaker.drawLoop().then(function () {
     if (options.avoidGraphemescope) {
+      console.log('Elapsed: ' + ((new Date()).getTime() - elapsed.getTime()) / 1000)
       console.log(`Done:${name}`)
       setTimeout(() => { rendering = false }, 500)
     } else {
       window.doGraphemescope(graphemescopeCount, function () {
+        console.log('Elapsed: ' + ((new Date()).getTime() - elapsed.getTime()) / 1000)      
         console.log(`Done:${name}`)
         setTimeout(() => { rendering = false }, 500)
       })
