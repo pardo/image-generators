@@ -14,7 +14,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "serve": "parcel serve --no-autoinstall ./snakeart/index.html"
+    "serve": "parcel serve --no-autoinstall ./snakeart/index.html",
+    "serve_1": "parcel serve --no-autoinstall ./half_circles/index.html",
+    "serve_2": "parcel serve --no-autoinstall ./half_art/index.html"
   },
   "author": "",
   "license": "ISC"

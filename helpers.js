@@ -73,7 +73,6 @@ function deg2rad (d) {
 
 function angleBetweenXY (x1, y1, x2, y2) {
   var a = Math.atan2(y2 - y1, x2 - x1)
-  console.log(a)
   if (a < 0) { a += Math.PI * 2 }
   return a
 }

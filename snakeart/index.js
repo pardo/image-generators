@@ -1,10 +1,10 @@
 import './style.css'
 import Drawable from './drawable'
-import {FisherYatesShuffle, changeColorLuminance, range} from './helpers'
+import {FisherYatesShuffle, changeColorLuminance, range} from '../helpers'
 import Rainbow from 'rainbowvis.js'
-import ColorsArray from './colors'
+import ColorsArray from '../colors'
 import seedrandom from 'seedrandom'
-import Graphemescope from './graphemescope'
+import Graphemescope from '../graphemescope'
 
 const TOP_LINE = 1
 const RIGHT_LINE = 2
@@ -555,11 +555,11 @@ window.render = function (width, height, name, options) {
     width: parseInt(snaker.width * snaker.size),
     height: parseInt(snaker.height * snaker.size)
   })
-  if (options.bgcolor === undefined) {
+  if (options.bgColor === undefined) {
     drawable.fill(snaker.colors[0])
   } else {
     // '#e3ca88'
-    drawable.fill(options.bgcolor)
+    drawable.fill(options.bgColor)
   }
   // snaker.drawGrid()
   var graphemescopeCount = parseInt(snaker.seed() * 3)
